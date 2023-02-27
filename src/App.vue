@@ -1,17 +1,13 @@
 <template>
-<!--  <img alt="Vue logo" src="./assets/logo.png">-->
-<!--  <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-  <ContentList></ContentList>
+  <div id="app">
+    <router-view/>
+  </div>
 </template>
 
 <script>
-import ContentList from './components/content/ContentList.vue'
-
 export default {
   name: 'App',
-  components: {
-    ContentList
-  }
+  components: {}
 }
 </script>
 

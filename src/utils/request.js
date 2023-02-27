@@ -6,31 +6,6 @@ const request = axios.create({
     // timeout: 5000
 })
 
-//请求白名单，如果请求在白名单里，将不会呗拦截权限校验
-const whiteUrls=["/admin/login","/admin/register"]
-
-// request 拦截器
-// 可以自请求发送前对请求做一些处理
-// 比如统一加token，对请求参数统一加密
-request.interceptors.request.use(config => {
-    config.headers['Content-Type'] = 'application/json;charset=utf-8';
-
-    //取出sessionStorage里面缓存的用户信息
-    let userJSON=sessionStorage.getItem("user");
-    // let tokenJSON=sessionStorage.getItem("token");
-    if(!whiteUrls.includes(config.url)){//检验请求白名单那
-        if (!userJSON){
-            router.push("/login")
-        }else {
-            let user=JSON.parse(userJSON);
-            config.headers["token"]=user.token;//设置请求头
-        }
-    }
-    return config
-}, error => {
-    return Promise.reject(error)
-});
-
 // response 拦截器
 // 可以在接口响应后统一处理结果
 request.interceptors.response.use(
@@ -56,6 +31,5 @@ request.interceptors.response.use(
         return Promise.reject(error)
     }
 )
-
 
 export default request
