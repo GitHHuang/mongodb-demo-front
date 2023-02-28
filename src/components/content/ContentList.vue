@@ -1,15 +1,15 @@
 <template>
-  <div class="el-table">
-    <el-table :data="contentList">
-      <el-table-column prop="title" label="标题"/>
-      <el-table-column prop="author" label="作者"/>
+  <div>
+    <el-table :data="contentList" border="true" highlight-current-row="true" fit="false">
+      <el-table-column prop="title" label="标题" width="100px"/>
+      <el-table-column class="mongo-column" prop="author" label="作者"/>
       <el-table-column prop="desc" label="详情"/>
     </el-table>
   </div>
 </template>
 
 <script>
-import { listContent } from "@/api/content";
+import {listContent} from "@/api/content";
 
 export default {
   name: "ContentList",
@@ -37,4 +37,15 @@ export default {
 
 <style scoped>
 
+.el-table {
+
+}
+
+.el-table-column {
+  width: 200px;
+}
+
+.mongo-column {
+  width: 100px;
+}
 </style>
