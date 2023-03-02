@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HelloWord from '../components/HelloWorld.vue'
-import ContentList from '@/components/content/ContentList.vue'
+import ContentList from '@/components/game/list.vue'
 
 export const routes = [
     {
