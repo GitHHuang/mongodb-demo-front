@@ -7,7 +7,7 @@
     </el-form>
 
 
-    <el-row>
+    <el-row :gutter="10">
       <el-col :span="1.5">
         <el-button type="primary" size="mini" @click="getGameList">查询</el-button>
       </el-col>
