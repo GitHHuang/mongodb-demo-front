@@ -30,3 +30,10 @@ export function editGame(data) {
         data: data
     })
 }
+
+export function delGame(id) {
+    return request({
+        url: '/game/' + id,
+        method: 'delete'
+    })
+}

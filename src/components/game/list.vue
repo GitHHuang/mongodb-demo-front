@@ -2,7 +2,7 @@
   <div>
     <el-form :model="queryParams" ref="queryForm" size="small">
       <el-row :gutter="10">
-        <el-form-item label="名称" prop="name" style="width:200px">
+        <el-form-item label="名 称" prop="name" style="width:200px;margin-left: 10px;">
             <el-input v-model="queryParams.name" @keyup.enter="getGameList"/>
         </el-form-item>
         <el-col :span="1.5">
@@ -28,18 +28,18 @@
       <el-table-column label="操作">
         <template #default="scope">
           <el-button size="mini" type="text" @click="editGame(scope.row)">修改</el-button>
-          <el-button size="mini" type="text" @click="editGame(scope.row)">删除</el-button>
+          <el-button size="mini" type="text" @click="delGame(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
   </div>
 
-  <game-add ref="gameAdd"></game-add>
+  <game-add ref="gameAdd" @refreshList="getGameList()"></game-add>
 </template>
 
 <script>
-import {listGame} from "@/api/game";
+import {listGame, delGame} from "@/api/game";
 import gameAdd from "@/components/game/add";
 
 export default {
@@ -51,7 +51,7 @@ export default {
       gameList: [],
       queryParams: {
         name: "",
-        developer: "粉丝",
+        developer: "",
       }
     }
   },
@@ -69,6 +69,18 @@ export default {
     },
     editGame(row) {
       this.$refs.gameAdd.show(row.id);
+    },
+    delGame(row) {
+      const gameId = row.id
+      this.$confirm('是否删除【' + row.name + '】？', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }).then(() => {
+            delGame(gameId).then(() => {
+              this.getGameList();
+            })
+        })
     }
   }
 };

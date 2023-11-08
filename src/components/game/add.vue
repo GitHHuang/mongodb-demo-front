@@ -82,6 +82,7 @@ export default {
         addGame(this.gameForm).then(response => {
           if (response === "保存成功") {
             ElMessage.success(response);
+            this.$emit('refreshList');
             this.open = false;
           } else {
             ElMessage.error("操作失败");
@@ -91,6 +92,7 @@ export default {
         editGame(this.gameForm).then(response => {
           if (response === "保存成功") {
             ElMessage.success(response);
+            this.$emit('refreshList');
             this.open = false;
           } else {
             ElMessage.error("操作失败");
